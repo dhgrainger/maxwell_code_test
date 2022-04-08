@@ -1,7 +1,6 @@
-namespace :get_github_score do
+namespace :github_score do
   desc "Access Github and assign a score based on commit type"
-  task dhh: :environment do
-  	new_score = GitHubScore.new("dhh").calculate
-  	puts "DHH's github score is #{new_score}"
+  task :get, [:name] => :environment do |t, args|
+  	puts GitHubScore.new(args.name).display
   end
 end

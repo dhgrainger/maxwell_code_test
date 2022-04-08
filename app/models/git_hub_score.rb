@@ -15,7 +15,7 @@ class GitHubScore
 		@url = "https://api.github.com/users/#{name}/events/public"
 	end
 
-	def pull_data
+	def get_data
 		ApiAdapter.get(url)
 	end
 
@@ -23,7 +23,19 @@ class GitHubScore
 		SCORES[type] || 1
 	end
 
-	def calculate
-		pull_data.map{|commit| assign_score(commit["type"])}.reduce(:+).to_s
+	def calculate(data)
+		data.map{|commit| assign_score(commit["type"])}.reduce(:+).to_s
+	end
+
+	def display
+		data = get_data
+		case 
+		when data.is_a?(String)
+			"I'm sorry there was an issue: #{data}"
+		when data.empty?
+			"#{name.upcase}'s Github score was not found"
+		when data.present?
+			"#{name.upcase}'s Github score is #{calculate(data)}"
+		end
 	end
 end
