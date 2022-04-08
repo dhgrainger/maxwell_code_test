@@ -1,3 +1,6 @@
+#splitting this into it's own class since prices are subject to change
+#more than say github scores ... There could be some added functionality 
+#for updating prices needed in the future
 class PricingTable
 	PRICES = {
 		milk: {unit_price: 3.97, sale_qty: 2, sale_price: 5.00},
