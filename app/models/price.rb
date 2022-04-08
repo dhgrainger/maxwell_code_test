@@ -1,8 +1,8 @@
 class Price
 	attr_reader :item, :quantity
-	def initialize(items)
-		@item = items.first.to_sym
-		@quantity = items.count
+	def initialize(item, quantity)
+		@item = item
+		@quantity = quantity
 	end
 
 	def calculate
