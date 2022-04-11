@@ -1,9 +1,6 @@
 # Controller
 
-class People < ActionController::Base
-
-	# ... Other REST actions
-
+class PersonController < ActionController::Base
 	def create
 		@person = Person.new(params[:person])
 
@@ -33,15 +30,5 @@ class People < ActionController::Base
 		end
 	end
 
-	def validateEmail
-		@user = Person.find_by_slug(params[:slug])
-		if @user.present?
-			@user.validated = true
-			@user.save
-			Rails.logger.info "USER: User ##{@person.id} validated email successfully."
-			@admins = Person.where(:admin => true)
-			Emails.admin_user_validated(@admins, user)
-			Emails.welcome(@user).deliver!
-		end
-	end
+	#valide_email
 end

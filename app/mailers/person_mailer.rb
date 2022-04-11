@@ -1,4 +1,4 @@
-class Emails < ActionMailer::Base
+class PersonMailer < ActionMailer::Base
 	def welcome(person)
 		@person = person
 		mail to: @person, from: 'foo@example.com'
