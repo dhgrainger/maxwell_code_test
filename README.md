@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Exercise 1: DHH score challenge
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run bundle exec rake 'github_score:get[dhh]' which uses a rake task to access the GitHubScore model and the ApiAdapter to pull data from git and determine the 'score' based on the provided scoring system.
