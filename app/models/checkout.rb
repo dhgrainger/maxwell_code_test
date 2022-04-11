@@ -26,7 +26,7 @@ class Checkout
 	end
 
 	def savings
-		total - total_without_savings
+		total_without_savings - total
 	end
 
 	def to_money(amount)
