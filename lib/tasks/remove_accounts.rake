@@ -1,11 +1,11 @@
 namespace :accounts do
 	desc "Remove accounts where the email was never validated and it is over 30 days old"
 	task :remove_unvalidated do
-		@people = Person.where('created_at < ?', Time.now - 30.days).where(:validated => false)
+		@people = Person.new_invalid_users
 		@people.each do |person|
 			Rails.logger.info "Removing unvalidated user #{person.email}"
 			person.destroy
 		end
-		Emails.admin_removing_unvalidated_users(Person.where(:admin => true), @people).deliver
+		PersonMailer.admin_removing_unvalidated_users(Person.admin, @people).deliver
 	end
 end
