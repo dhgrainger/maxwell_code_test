@@ -24,4 +24,21 @@ class Checkout
 			 Price.new(item.to_sym,info[:quantity]).unit_total(info[:quantity])
 		end.reduce(:+)
 	end
+
+	def savings
+		total - total_without_savings
+	end
+
+	def to_money(amount)
+		"$#{amount.round(2)}"
+	end
+
+	def display
+		puts "Item   Quantity   Price"
+		items.each do |item, info|
+			puts "#{item.to_s}   #{info[:quantity].to_s}           #{to_money(info[:price])}"
+		end
+		puts "\nTotal: #{to_money(total)}"
+		puts "You saved #{to_money(savings)} today"
+	end
 end
